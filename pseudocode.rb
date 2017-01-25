@@ -13,16 +13,25 @@
 #Else for any other user response, print in all upper-case letters “I AM HAVING A HARD TIME HEARING YOU.”
 #The program ends as soon as both of the following conditions are met: When the user responds with the word and punctuation “GOODBYE!” a second time in all upper-case letters AND after which the program prints in all upper-case letters, “THANK YOU FOR CALLING!”
 
-print "HELLO, THIS IS A GROCERY STORE!”
-user_question = gets
-if user_question.empty?
-    puts “HELLO?!”
-elsif user_question.upcase?
-    puts “NO, THIS IS NOT A PET STORE.”
-elsif user_question == GOODBYE!.upcase?
-    puts "ANYTHING I CAN HELP YOU WITH?"
-elsif user_question == GOODBYE!.upcase?
-    puts “THANK YOU FOR CALLING!”
-else
-    puts “I AM HAVING A HARD TIME HEARING YOU.”
+
+ready_to_quit = false
+puts "HELLO, THIS IS A GROCERY STORE!"
+
+input = gets
+until ready_to_quit
+
+  if input.empty?
+      puts "hello?!".upcase
+  elsif input.upcase
+      puts "No, this is not a pet store.".upcase
+  elsif input == "Goodbye!".upcase
+      puts "Anything else I can help you with?".upcase
+  else input.downcase
+      puts "I am having a hard time hearing you.".upcase
+  end
+
+if input == "Goodbye!".upcase
+    ready_to_quit = true
+    puts "THANK YOU FOR CALLING!"
+    end
 end

@@ -18,7 +18,7 @@ ready_to_quit = false
 puts "HELLO, THIS IS A GROCERY STORE!"
 
 input = gets
-until ready_to_quit
+until ready_to_quit = true
 
   if input.empty?
       puts "hello?!".upcase

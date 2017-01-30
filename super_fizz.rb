@@ -3,6 +3,7 @@
 # flow control
 # do extensions if time
 # maybe use .each do? or .times?
+# try using empty array and shoveling
 
 
 (1..1000).each do |number|

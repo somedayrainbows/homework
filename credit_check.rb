@@ -25,36 +25,65 @@
 
 #require 'pry'
 
-card_number = "4929735477250543"
-valid = false
+class AccountValidation
+attr_reader :num
 
-individual_numbers = card_number.chars
+    def initialize(num)
+        @num = num
+    end
 
-individual_integers = individual_numbers.map { |number| number.to_i }
+    def validate
+        mapped_number = num.chars.reverse.map { |number| number.to_i }
+        doubles_mapped = mapped_number.map.with_index { |number, index| index.odd? ? number * 2 : number }
+        doubles_subtracted = doubles_mapped.map { |number| number>9 ? number-9 : number }
+        total_sum = doubles_subtracted.reduce(:+)
+        if total_sum % 10 == 0
+            puts "The number is valid!"
+            valid = true
+        else  
+            puts "The number is not valid!"
+        end
+    end 
+
+end
+
+validator = AccountValidation.new("342801633855673")
+validator.validate
+
+
+
+#card_number = "6011797668868728"
+#valid = false
+
+#individual_numbers = card_number.chars
+
+#individual_integers = individual_numbers.map { |number| number.to_i }
 
 #need to get the index positions of the numbers to be able to do math on a number based on its index position
 # pull out those to be doubled into a new array?
 # (single-line syntax) array.each { |item| item.do_something }
 
-doubles = individual_integers.values_at(*individual_integers.each_index.select(&:even?))
-singles = individual_integers.values_at(*individual_integers.each_index.select(&:odd?))
+#doubles = individual_integers.values_at(*individual_integers.each_index.select(&:even?))
+#singles = individual_integers.values_at(*individual_integers.each_index.select(&:odd?))
 
-doubled = doubles.map { |number| number * 2 } #doubled is the doubles array *after* each number has been doubled
+#doubled = doubles.map { |number| number * 2 } #doubled is the doubles array *after* each number has been doubled
 
-doubled_subtracted = doubled.map{ |number| (number>9 ? number-9 : number) }
+#doubled_subtracted = doubled.map{ |number| (number>9 ? number-9 : number) }
 
-singles_sum = singles.inject(0, :+)
+#singles_sum = singles.inject(0, :+)
 
-doubled_sum = doubled_subtracted.inject(0, :+)
+#doubled_sum = doubled_subtracted.inject(0, :+)
 
-total_sum = doubled_sum + singles_sum
+#total_sum = doubled_sum + singles_sum
 
-if total_sum % 10 == 0
-    puts "The number is valid!"
-    valid = true
-    else  
-    puts "The number is not valid!"
-end 
+# =begin
+# if total_sum % 10 == 0
+#     puts "The number is valid!"
+#     valid = true
+#     else  
+#     puts "The number is not valid!"
+# end 
+# =end
 
 #binding.pry
 #""
